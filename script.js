@@ -58,12 +58,34 @@ function displayWorld(level) {
     for(var i=0; i<worldToBuild.length; i++) {
         output += `<div class="row">`;
         for(var j=0; j<worldToBuild[i].length; j++){
-            output += `\t<div class="${worldGlossary[worldToBuild[i][j]]}"></div>`;
+            if(worldToBuild[i][j] == 5) {
+                output += `\t<div id="${worldGlossary[worldToBuild[i][j]]}"></div>`;
+            } else {
+                output += `\t<div class="${worldGlossary[worldToBuild[i][j]]}"></div>`;
+            }
         }
         output += `</div>`;
     }
-
     document.querySelector(".world").innerHTML = output;
 }
 
 displayWorld(2);
+
+document.onkeydown = function(event) {
+    //UP = 38
+    if(event.keyCode == 38) {
+        console.log("move up");
+    }
+    //RIGHT = 39
+    if(event.keyCode == 39) {
+        console.log("move right");
+    }
+    //DOWN = 40
+    if(event.keyCode == 40) {
+        console.log("move down");
+    }
+    //LEFT = 37
+    if(event.keyCode == 37) {
+        console.log("move left");
+    }
+}
