@@ -8,12 +8,17 @@
     <title>Pacman</title>
 </head>
 <body>
-    <div class="world">
-        <!-- world populates here, comprised of div rows -->
-        <!-- classes of wall, coin, large-coin, empty, cherry, and ghost -->
-        <!-- id of pacman -->
+    <div class="top">
+        <div class="world"></div>
+        <div class="game-info">
+            <h1>Pacman Game</h1>
+            <p>Level: <span id="level">1</span></p>
+            <div class="scoreboard">
+                <p>Coins are worth 1 point each, large coins are 2 points!</p>
+                <p>Your current score is: <span id="score">0</span> points</p>
+            </div>
+        </div>
     </div>
-    <div class="scoreboard"></div>
     <script src="./script.js"></script>
 </body>
 </html>
