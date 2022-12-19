@@ -46,7 +46,9 @@
 #pacman {
     background-image: url("./images/pacman.gif");
     position: absolute;
-    /* transform: rotate(0deg); */
+    transform: rotate(0deg);
+    /* left: 0px;
+    top: 0px; */
 }
 
 .game-info {

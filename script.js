@@ -1,9 +1,9 @@
 var worldGlossary = {
-    "0": "empty",
+    0: "empty",
     1: "wall",
-    "2": "coin",
-    "3": "large-coin",
-    "4": "cherry"
+    2: "coin",
+    3: "large-coin",
+    4: "cherry"
 }
 var world1 = [
     [1,1,1,1,1,1,1,1,1,1],
@@ -20,11 +20,11 @@ var world1 = [
 var world2 = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,2,2,2,2,2,3,2,1,2,2,2,2,1,1],
-    [1,1,1,1,1,1,1,1,2,1,2,1,1,2,1,1],
-    [1,1,1,1,1,1,1,1,2,1,2,1,1,3,1,1],
+    [1,2,1,1,1,1,1,1,2,1,2,1,1,2,1,1],
+    [1,2,1,1,1,1,1,1,2,1,2,1,1,3,1,1],
     [1,2,2,2,2,1,1,1,2,1,2,1,1,2,1,1],
     [1,2,1,1,2,1,1,1,2,1,2,2,2,2,2,1],
-    [1,2,1,1,2,1,1,1,2,2,2,1,1,2,1,1],
+    [1,2,2,2,2,2,2,2,2,2,2,1,1,2,1,1],
     [1,3,1,1,2,1,1,1,1,1,1,1,1,2,1,1],
     [1,2,1,1,2,2,2,3,2,2,2,2,2,2,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
@@ -44,7 +44,6 @@ var world3 = [
 ]
 
 // var level = document.getElementById("level");
-
 function displayWorld(level) {
     var worldToBuild;
     if (level == 1) {
@@ -67,15 +66,17 @@ function displayWorld(level) {
 }
 displayWorld(2);
 
-// var pacman = {
-//     x: 1,
-//     y: 1
-// }
-// function placePacman() {
-//     document.getElementById("pacman").style.left = `${pacman.x * 40}px`;
-//     document.getElementById("pacman").style.top = `${pacman.y * 40}px`;
-// }
-// placePacman();
+
+var pacmanPosition = {
+    x: 1,
+    y: 1
+}
+function placePacman() {
+    console.log(document.getElementById("pacman"));
+    // document.getElementById("pacman").style.left = `${pacman.x * 20}px`; //pacmanPosition.x * 20 + "px";
+    // document.getElementById("pacman").style.top = `${pacman.y * 20}px`; //pacmanPosition.y * 20 + "px"; 
+}
+placePacman();
 
 document.onkeydown = function(event) {
     //UP = 38
