@@ -13,7 +13,7 @@ var world1 = [
     [1,2,2,2,2,1,1,1,2,1],
     [1,2,1,1,2,1,1,1,4,1],
     [1,2,1,1,2,1,1,1,2,1],
-    [1,3,1,1,2,1,1,1,1,1],
+    [1,3,1,1,2,1,1,1,2,1],
     [1,2,1,1,2,2,2,3,2,1],
     [1,1,1,1,1,1,1,1,1,1]
 ]
@@ -111,13 +111,14 @@ document.onkeydown = function(event) {
 }
 
 function updateWorld() {
-    // console.log(`current position: ${world[pacmanPosition.y+1][pacmanPosition.x+1]}`)
-    // console.log(`position to update: ${worldGlossary[world[pacmanPosition.y-1][pacmanPosition.x-1]]}`)
-    // if(world[pacmanPosition.y+1][pacmanPosition.x+1] == 2) {
-    //     world[pacmanPosition.y+1][pacmanPosition.x+1] = 0;
-    //     return 2;
-    // }
-    return 0;
+    //grab the current position before updating it below, so it can be returned when the function ends
+    var position = world[pacmanPosition.y-1][pacmanPosition.x-1];
+
+    //update the world, changing the current world[][] element to empty
+    world[pacmanPosition.y-1][pacmanPosition.x-1] = 0;
+    displayWorld();
+
+    return position;
 }
 
 var currentScore = score.innerText;
