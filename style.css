@@ -7,7 +7,7 @@
     background-color: black;
 }
 
-.top {
+.game {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -19,7 +19,7 @@
 .row {
     display: flex;
 }
-.wall, .coin, .large-coin, .empty, #pacman{
+.wall, .coin, .large-coin, .cherry, .empty, #pacman{
     height: 20px;
     width: 20px;
     border: 2px solid black;
@@ -37,6 +37,9 @@
 }
 .large-coin {
     background-image: url("./images/coin-large.png");
+}
+.cherry {
+    background-image: url("./images/cherry.png");
 }
 #pacman {
     /* background-color: black; */
@@ -58,4 +61,14 @@
 #score {
     color: yellow;
     font-weight: bold;
+}
+.instructions {
+    color: white;
+    margin-left: 20px;
+}
+/* .instructions > h3 {
+    text-decoration: underline;
+} */
+.instructions > ul {
+    margin-left: 20px;
 }
