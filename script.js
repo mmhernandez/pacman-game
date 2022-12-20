@@ -42,6 +42,7 @@ var world3 = [
     [1,1,2,2,2,1,1,1,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,1,1,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
+var world = worldToDisplay();
 
 function worldToDisplay() {
     var worldToBuild;
@@ -56,7 +57,6 @@ function worldToDisplay() {
     return worldToBuild;
 }
 
-var world = worldToDisplay();
 function displayWorld() {
     var output = '';
     for(var i=0; i<world.length; i++) {
@@ -78,26 +78,39 @@ var pacmanPosition = {
     y: 2
 }
 function placePacman() {
+    // if(type == "start") {
+    //     pacman.style.left = pacmanPosition.y * 20 + "px";
+    //     pacman.style.top = pacmanPosition.x * 20 + "px";
+    // } else {
+    //     pacman.style.left = pacmanPosition.y * 20 + "px";
+    //     pacman.style.top = pacmanPosition.x * 20 + "px";
+    // }
     pacman.style.left = pacmanPosition.x * 20 + "px";
     pacman.style.top = pacmanPosition.y * 20 + "px";
+
+    console.log(`y: ${pacmanPosition.y} \nx: ${pacmanPosition.x}`)
 }
 placePacman();
 
 document.onkeydown = function(event) {
-    //MOVE UP = 38
-    if(event.keyCode == 38 && (world[pacmanPosition.y - 1][pacmanPosition.x] != 1)) {
-        pacmanPosition.y--;
-    }
-    //MOVE RIGHT = 39
-    else if(event.keyCode == 39 && (world[pacmanPosition.y][pacmanPosition.x + 1] != 1)) {
-        pacmanPosition.x++;
-    }
-    //MOVE DOWN = 40
-    else if(event.keyCode == 40 && (world[pacmanPosition.y + 1][pacmanPosition.x]) != 1) {
+    if(event.key == "ArrowDown" && world[pacmanPosition.y][pacmanPosition.x-1] != 1) {
+        console.log(`keypress: ${event.key}`);
+        pacman.style.transform = `rotate(90deg)`;
         pacmanPosition.y++;
     }
-    //MOVE LEFT = 37
-    else if(event.keyCode == 37 && (world[pacmanPosition.y][pacmanPosition.x - 1] != 1)) {
+    else if(event.key == "ArrowRight" && world[pacmanPosition.y-1][pacmanPosition.x] != 1) {
+        console.log(`keypress: ${event.key}`);
+        pacman.style.transform = `rotate(0deg)`;
+        pacmanPosition.x++;
+    }
+    else if(event.key == "ArrowUp" && world[pacmanPosition.y-2][pacmanPosition.x-1] != 1) {
+        console.log(`keypress: ${event.key}`);
+        pacman.style.transform = `rotate(270deg)`;
+        pacmanPosition.y--;
+    }
+    else if(event.key = "ArrowLeft" && world[pacmanPosition.y-1][pacmanPosition.x-2] != 1) { 
+        console.log(`keypress: ${event.key}`);
+        pacman.style.transform = `rotate(180deg)`;
         pacmanPosition.x--;
     }
     placePacman();
