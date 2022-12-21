@@ -44,14 +44,15 @@ var world3 = [
 ]
 var world = worldToDisplay();
 
+
 function worldToDisplay() {
     var worldToBuild;
-    var level = document.getElementById("level").innerText;
-    if (level == 1) {
+    var currentLevel = level.innerText;
+    if (currentLevel == 1) {
         worldToBuild = world1;
-    } else if(level == 2) {
+    } else if(currentLevel == 2) {
         worldToBuild = world2;
-    }else if(level == 3) {
+    }else if(currentLevel == 3) {
         worldToBuild = world3;
     }
     return worldToBuild;
@@ -84,30 +85,77 @@ function placePacman() {
 }
 placePacman();
 
+var moveRightInterval;
+var moveDownInterval;
+var moveLeftInterval;
+var moveUpInterval;
+
 document.onkeydown = function(event) {    
-    // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
-    if(event.key == "ArrowRight" && world[pacmanPosition.y-1][pacmanPosition.x] != 1) {
-        //want to move right - must add 1 to inner array (x)
-        pacmanPosition.x++;
-        pacman.style.transform = `rotate(0deg)`;
+    if(event.key == "ArrowRight") {
+        moveRightInterval = setInterval(moveRight, 300);
     }
-    else if(event.key == "ArrowDown" && world[pacmanPosition.y][pacmanPosition.x-1] != 1) {
+    else if(event.key == "ArrowDown") {
+        moveDownInterval = setInterval(moveDown, 300);
+    }
+    else if(event.key == "ArrowLeft") {
+        moveLeftInterval = setInterval(moveLeft, 300);
+    }
+    else if(event.key == "ArrowUp") {
+        moveUpInterval = setInterval(moveUp, 300);
+    }
+}
+
+function moveRight() {
+    // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
+    if(world[pacmanPosition.y-1][pacmanPosition.x] != 1) {
+        //want to move right - must add 1 to inner array (x)
+        pacmanPosition.x++
+        pacman.style.transform = `rotate(0deg)`;
+        updateScore(updateWorld());
+        placePacman();
+    }    
+    else {
+        clearInterval(moveRightInterval);
+    }
+}
+function moveDown() {
+    // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
+    if(world[pacmanPosition.y][pacmanPosition.x-1] != 1) {
         //want to move down - must add 1 to outer array (y)
         pacmanPosition.y++;
         pacman.style.transform = `rotate(90deg)`;
+        updateScore(updateWorld());
+        placePacman();
+    }    
+    else {
+        clearInterval(moveDownInterval);
     }
-    else if(event.key == "ArrowLeft" && world[pacmanPosition.y-1][pacmanPosition.x-2] != 1) {
+}
+function moveLeft() {
+    // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
+    if(world[pacmanPosition.y-1][pacmanPosition.x-2] != 1) {
         //want to move left - must subtract 1 from the inner array (x)
         pacmanPosition.x--;
         pacman.style.transform = `rotate(180deg)`;
+        updateScore(updateWorld());
+        placePacman();
+    }    
+    else {
+        clearInterval(moveLeftInterval);
     }
-    else if(event.key == "ArrowUp"  && world[pacmanPosition.y-2][pacmanPosition.x-1] != 1) {
+}
+function moveUp() {
+    // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
+    if(world[pacmanPosition.y-2][pacmanPosition.x-1] != 1) {
         //want to move up - must subtrack 1 from the outer array (y)
         pacmanPosition.y--;
         pacman.style.transform = `rotate(270deg)`;
+        updateScore(updateWorld());
+        placePacman();
+    }    
+    else {
+        clearInterval(moveUpInterval);
     }
-    updateScore(updateWorld());
-    placePacman();
 }
 
 function updateWorld() {

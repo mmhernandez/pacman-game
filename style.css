@@ -30,7 +30,6 @@
 }
 .wall {
     background-color: blue;
-    /* border-top: 5px double blue; */
 }
 .coin {
     background-image: url("./images/coin.png");
@@ -42,12 +41,9 @@
     background-image: url("./images/cherry.png");
 }
 #pacman {
-    /* background-color: black; */
     background-image: url("./images/pacman.gif");
     position: absolute;
     transform: rotate(0deg);
-    /* left: 40px;
-    top: 40px; */
 }
 
 .game-info {
@@ -66,9 +62,10 @@
     color: white;
     margin-left: 20px;
 }
-/* .instructions > h3 {
-    text-decoration: underline;
-} */
 .instructions > ul {
     margin-left: 20px;
+}
+
+#test {
+    color: white;
 }
