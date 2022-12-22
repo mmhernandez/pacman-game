@@ -5,13 +5,14 @@ var worldGlossary = {
     3: "large-coin",
     4: "cherry"
 }
+var world1MaxPoints = 32;
 var world1 = [
     [1,1,1,1,1,1,1,1,1,1],
     [1,0,2,2,2,2,2,3,2,1],
     [1,1,1,1,1,1,1,1,2,1],
     [1,1,1,1,1,1,1,1,2,1],
     [1,2,2,2,2,1,1,1,2,1],
-    [1,2,1,1,2,1,1,1,4,1],
+    [1,2,1,1,2,1,1,1,2,1],
     [1,2,1,1,2,1,1,1,2,1],
     [1,3,1,1,2,1,1,1,2,1],
     [1,2,1,1,2,2,2,3,2,1],
@@ -31,15 +32,15 @@ var world2 = [
 ]
 var world3 = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,2,2,2,2,2,2,1,1,1],
-    [1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,4,1,1],
-    [1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1],
-    [1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,2,1,1,1],
-    [1,2,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,2,2,4,2,1,1,1,1],
-    [1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,2,1,1,1],
-    [1,2,1,1,1,2,3,2,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1],
-    [1,2,2,1,2,2,1,2,2,1,2,2,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1],
-    [1,1,2,4,2,1,1,1,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,1,1,1],
+    [1,0,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,2,2,1],
+    [1,2,1,1,1,1,1,3,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,1,1,0,1],
+    [1,2,2,2,2,2,2,2,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,2,2,4,1],
+    [1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,1,2,2,2,4,2,2,2,2,1,2,1],
+    [1,2,1,1,1,1,1,2,1,1,1,4,1,1,1,1,2,1,1,1,2,1,1,2,1,3,1],
+    [1,3,1,1,1,1,1,2,1,1,1,2,2,2,2,2,2,1,1,1,3,1,2,2,1,2,1],
+    [1,2,2,2,2,2,3,2,1,1,1,2,1,1,1,1,2,1,1,1,2,1,1,2,1,2,1],
+    [1,2,1,1,1,2,1,2,1,1,0,2,1,1,1,1,2,1,1,1,2,1,1,2,2,2,1],
+    [1,2,2,4,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,0,1,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 var world = worldToDisplay();
@@ -69,7 +70,7 @@ function displayWorld() {
     }
     document.querySelector(".world").innerHTML = output;
 
-    // alert("Let's play Pacman!");
+    evaluateScore();
 }
 displayWorld();
 
@@ -85,23 +86,27 @@ function placePacman() {
 }
 placePacman();
 
+
 var moveRightInterval;
 var moveDownInterval;
 var moveLeftInterval;
 var moveUpInterval;
 
-document.onkeydown = function(event) {    
+document.onkeydown = function(event) { 
+    // clear any other running intervals
+    clearIntervals();   
+
     if(event.key == "ArrowRight") {
-        moveRightInterval = setInterval(moveRight, 300);
+        moveRightInterval = setInterval(moveRight, 200);
     }
     else if(event.key == "ArrowDown") {
-        moveDownInterval = setInterval(moveDown, 300);
+        moveDownInterval = setInterval(moveDown, 200);
     }
     else if(event.key == "ArrowLeft") {
-        moveLeftInterval = setInterval(moveLeft, 300);
+        moveLeftInterval = setInterval(moveLeft, 200);
     }
     else if(event.key == "ArrowUp") {
-        moveUpInterval = setInterval(moveUp, 300);
+        moveUpInterval = setInterval(moveUp, 200);
     }
 }
 
@@ -117,6 +122,7 @@ function moveRight() {
     else {
         clearInterval(moveRightInterval);
     }
+    evaluateScore();
 }
 function moveDown() {
     // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
@@ -130,6 +136,7 @@ function moveDown() {
     else {
         clearInterval(moveDownInterval);
     }
+    evaluateScore();
 }
 function moveLeft() {
     // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
@@ -143,6 +150,7 @@ function moveLeft() {
     else {
         clearInterval(moveLeftInterval);
     }
+    evaluateScore();
 }
 function moveUp() {
     // the world array in the conditionals subtract 1 from each x/y coordinate b/c arrays start at position 0
@@ -156,6 +164,14 @@ function moveUp() {
     else {
         clearInterval(moveUpInterval);
     }
+}
+
+function clearIntervals() {
+    // clear any other running intervals
+    clearInterval(moveRightInterval);
+    clearInterval(moveDownInterval);
+    clearInterval(moveLeftInterval);
+    clearInterval(moveUpInterval);
 }
 
 function updateWorld() {
@@ -181,4 +197,48 @@ function updateScore(item) {
         currentScore += 50;
     }
     score.innerText = currentScore;
+}
+
+function evaluateScore() {
+    var countRemainingCoins = 0;
+    var countRemainingLargeCoins = 0;
+    var countRemainingCherries = 0;
+
+    for(var i=0; i<world.length; i++) {
+        for(var j=0; j<world[i].length; j++) {
+            if(world[i][j] == 2) {  //2 = coin
+                countRemainingCoins++;
+            }
+            if(world[i][j] == 3) {  //3 = large coin
+                countRemainingLargeCoins++;
+            }
+            if(world[i][j] == 4) {  //4 = cherries
+                countRemainingCherries++;
+            }
+        }
+    }
+
+    if(countRemainingCoins == 0 && countRemainingLargeCoins == 0 && countRemainingCherries == 0) {
+        clearedLevelMessage.innerText = "You've cleared the level!";
+        document.getElementById("nextLevelBtn").style.display = "block";
+    }
+}
+
+function nextLevel() {
+    var level = document.getElementById("level").innerText;
+    level++;
+    document.getElementById("level").innerText = level;
+    
+    world = worldToDisplay();
+    displayWorld();
+
+    // document.getElementById("totalScore").innerText += currentScore;
+    clearedLevelMessage.innerText = "";
+    document.getElementById("nextLevelBtn").style.display = "none";
+    currentScore = 0;
+
+    pacmanPosition.y = 2;
+    pacmanPosition.x = 2;
+    pacman.style.transform = `rotate(0deg)`;
+    placePacman();
 }

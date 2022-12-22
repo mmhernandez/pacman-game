@@ -14,9 +14,14 @@
         <div id="pacman"></div>
         <div class="game-info">
             <h1>Pacman Game</h1>
-            <p>Level: <span id="level">2</span></p>
+            <div class="sub-header">
+                <p>Level: <span id="level">1</span></p>
+                <!-- <p>Total Score: <span id="totalScore"></span></p> -->
+            </div>
             <div class="scoreboard">
-                <p>Your current score is: <span id="score">0</span> points</p>
+                <p>Your current score is: <span id="score"></span> points</p>
+                <h3 id="clearedLevelMessage"></h3>
+                <button id="nextLevelBtn" onclick="nextLevel()">Next Level</button>
             </div>
         </div>
     </div>
