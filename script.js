@@ -232,10 +232,16 @@ function nextLevel() {
     world = worldToDisplay();
     displayWorld();
 
-    // document.getElementById("totalScore").innerText += currentScore;
+    var totalScoreVar = document.getElementById("totalScore").innerText
+    totalScoreVar = parseInt(totalScoreVar) + currentScore;
+    document.getElementById("totalScore").innerText = totalScoreVar;
+    console.log(totalScoreVar);
+    console.log(currentScore);
+
     clearedLevelMessage.innerText = "";
     document.getElementById("nextLevelBtn").style.display = "none";
     currentScore = 0;
+    score.innerText = currentScore;
 
     pacmanPosition.y = 2;
     pacmanPosition.x = 2;
