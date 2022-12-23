@@ -55,6 +55,7 @@ function worldToDisplay() {
         worldToBuild = world2;
     }else if(currentLevel == 3) {
         worldToBuild = world3;
+        placeGhosts();
     }
     return worldToBuild;
 }
@@ -224,27 +225,53 @@ function evaluateScore() {
     }
 }
 
+var totalScoreVar;
 function nextLevel() {
+    //determine the player's current level and increment it
     var level = document.getElementById("level").innerText;
     level++;
     document.getElementById("level").innerText = level;
     
+    //determine and display the new world
     world = worldToDisplay();
     displayWorld();
 
-    var totalScoreVar = document.getElementById("totalScore").innerText
+    //add the player's level score to their total score
+    totalScoreVar = document.getElementById("totalScore").innerText
     totalScoreVar = parseInt(totalScoreVar) + currentScore;
     document.getElementById("totalScore").innerText = totalScoreVar;
-    console.log(totalScoreVar);
-    console.log(currentScore);
 
+    //hide the level clear/next level information
     clearedLevelMessage.innerText = "";
     document.getElementById("nextLevelBtn").style.display = "none";
+
+    //reset the player's current score
     currentScore = 0;
     score.innerText = currentScore;
 
+    //place the pacman in it's starting position, for the new level
     pacmanPosition.y = 2;
     pacmanPosition.x = 2;
     pacman.style.transform = `rotate(0deg)`;
     placePacman();
 }
+
+
+
+// function placeGhosts() {
+//     var level = document.getElementById("level").innerText;
+//     if(level == 3) {
+//         placeGreenGhost();
+
+//     }
+// }
+
+// var greenGhostPosition = {
+//     y: 2,
+//     x: 2
+// }
+
+// function placeGreenGhost() {
+//     green.style.top = greenGhostPosition.y * 20 + "px";
+//     green.style.left = greenGhostPosition.x * 20 + "px";
+// }

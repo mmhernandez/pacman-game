@@ -19,7 +19,7 @@
 .row {
     display: flex;
 }
-.wall, .coin, .large-coin, .cherry, .empty, #pacman{
+.wall, .coin, .large-coin, .cherry, .empty, #pacman, #green, #red, #yellow, #pink{
     height: 20px;
     width: 20px;
     border: 2px solid black;
@@ -49,18 +49,31 @@
 .game-info {
     color: white;
     margin-top: 15px;
-    width: 30%;
+    width: 20%;
+}
+.info-box {
+    border: 1px solid darkgrey;
+    box-shadow: 1px 1px 5px 1px grey, -1px -1px 5px 1px grey;
+    width: fit-content;
+    padding: 10px;
+    margin-top: 8px;
 }
 .sub-header {
     display: flex;
     justify-content: flex-start;
     gap: 30px;
 }
+.remaining-lives {
+    margin: 10px 0px;
+
+}
 .scoreboard  {
     margin-top: 20px;
 }
 #score {
     color: yellow;
+}
+.bold {
     font-weight: bold;
 }
 #clearedLevelMessage {
@@ -76,7 +89,6 @@
     border-radius: 25px;
     display: none;
     margin-top: 10px;
-    font-weight: bold;
     cursor: pointer;
 }
 .instructions {
@@ -85,8 +97,4 @@
 }
 .instructions > ul {
     margin-left: 20px;
-}
-
-#test {
-    color: white;
 }

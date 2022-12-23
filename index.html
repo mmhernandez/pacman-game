@@ -12,16 +12,23 @@
         <div class="world">
         </div>
         <div id="pacman"></div>
+        <div id="green"></div>
+        <div id="red"></div>
+        <div id="yellow"></div>
+        <div id="pink"></div>
         <div class="game-info">
             <h1>Pacman Game</h1>
-            <div class="sub-header">
-                <p>Level: <span id="level">1</span></p>
-                <p>Total Score: <span id="totalScore">0</span></p>
+            <div class="info-box">
+                <div class="sub-header">
+                    <p>Level: <span class="bold" id="level">3</span></p>
+                    <p>Total Score: <span class="bold" id="totalScore">0</span></p>
+                </div>
+                <p class="remaining-lives">Lives: <span class="bold" id="lives">3</span></p>
+                <p>Your current score is: <span class="bold" id="score">0</span> points</p>
             </div>
             <div class="scoreboard">
-                <p>Your current score is: <span id="score">0</span> points</p>
                 <h3 id="clearedLevelMessage"></h3>
-                <button id="nextLevelBtn" onclick="nextLevel()">Next Level</button>
+                <button class="bold" id="nextLevelBtn" onclick="nextLevel()">Next Level</button>
             </div>
         </div>
     </div>
@@ -31,10 +38,10 @@
             <li>Use the arrow keys to move Pacman</li>
             <li>Coins are worth 1 point each</li>
             <li>Large coins are 2 points</li>
-            <li>Cherries are worth 50 points!</li>
+            <li>Cherries are worth 50 points</li>
+            <li>Avoid the ghosts! Colliding with a ghost takes away a life</li>
         </ul>
     </div>
-    <p id="test"></p>
     <script src="./script.js"></script>
 </body>
 </html>
