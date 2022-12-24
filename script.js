@@ -34,7 +34,7 @@ var world3 = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,2,2,1],
     [1,2,1,1,1,1,1,3,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,1,1,0,1],
-    [1,2,2,2,2,2,2,2,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,2,2,4,1],
+    [1,2,2,2,2,2,2,2,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,2,2,2,1],
     [1,2,1,1,1,1,1,2,1,1,1,2,1,1,1,1,2,2,2,4,2,2,2,2,1,2,1],
     [1,2,1,1,1,1,1,2,1,1,1,4,1,1,1,1,2,1,1,1,2,1,1,2,1,3,1],
     [1,3,1,1,1,1,1,2,1,1,1,2,2,2,2,2,2,1,1,1,3,1,2,2,1,2,1],
@@ -257,21 +257,47 @@ function nextLevel() {
 }
 
 
+function placeGhosts() {
+    var level = document.getElementById("level").innerText;
+    var greenGhostPosition = {};
+    var redGhostPosition = {};
+    var yellowGhostPosition = {};
+    var pinkGhostPosition = {};
+    if(level == 3) {
+        // greenGhostPosition.y = 9;
+        // greenGhostPosition.x = 11;
+        // ghostPosition("green", greenGhostPosition.y,greenGhostPosition.x);
+        green.style.display = "none";
 
-// function placeGhosts() {
-//     var level = document.getElementById("level").innerText;
-//     if(level == 3) {
-//         placeGreenGhost();
+        redGhostPosition.y = 9;
+        redGhostPosition.x = 11;
+        ghostPosition("red", redGhostPosition.y,redGhostPosition.x);
 
-//     }
-// }
+        yellowGhostPosition.y = 3;
+        yellowGhostPosition.x = 26;
+        ghostPosition("yellow", yellowGhostPosition.y,yellowGhostPosition.x);
 
-// var greenGhostPosition = {
-//     y: 2,
-//     x: 2
-// }
+        pinkGhostPosition.y = 10;
+        pinkGhostPosition.x = 25;
+        ghostPosition("pink", pinkGhostPosition.y,pinkGhostPosition.x);
+    }
+}
 
-// function placeGreenGhost() {
-//     green.style.top = greenGhostPosition.y * 20 + "px";
-//     green.style.left = greenGhostPosition.x * 20 + "px";
-// }
+function ghostPosition(color, yPosition, xPosition) {
+    if(color == "green") {
+        green.style.top = yPosition * 20 + "px";
+        green.style.left = xPosition * 20 + "px";
+    }
+    else if(color == "red") {
+        red.style.top = yPosition * 20 + "px";
+        red.style.left = xPosition * 20 + "px";
+    }
+    else if(color == "yellow") {
+        yellow.style.top = yPosition * 20 + "px";
+        yellow.style.left = xPosition * 20 + "px";
+    }
+    else {
+        pink.style.top = yPosition * 20 + "px";
+        pink.style.left = xPosition * 20 + "px";
+    }
+}

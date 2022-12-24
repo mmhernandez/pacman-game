@@ -45,6 +45,22 @@
     position: absolute;
     transform: rotate(0deg);
 }
+#green {
+    background-image: url("./images/green.png");
+    position: absolute;
+}
+#red {
+    background-image: url("./images/red.png");
+    position: absolute;
+}
+#yellow {
+    background-image: url("./images/yellow.png");
+    position: absolute;
+}
+#pink {
+    background-image: url("./images/pink.png");
+    position: absolute;
+}
 
 .game-info {
     color: white;
